@@ -16,14 +16,6 @@
 
 #include "off_highway_premium_radar_sample/pdu_definitions.hpp"
 
-// Our PCL for location points will contain more than 20 fields, thus we need to enable a boost mpl
-// vector with more than 20 type template arguments.
-#define BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS
-#if defined(BOOST_MPL_LIMIT_VECTOR_SIZE) && BOOST_MPL_LIMIT_VECTOR_SIZE < 30
-#undef BOOST_MPL_LIMIT_VECTOR_SIZE
-#endif
-#define BOOST_MPL_LIMIT_VECTOR_SIZE 30
-
 #include "pcl/pcl_macros.h"
 #include "pcl/point_types.h"
 #include "pcl/register_point_struct.h"
@@ -76,8 +68,8 @@ struct EIGEN_ALIGN16 PclPointLocation
     signal_noise_ratio = l.LocData_Snr_i_j;
     radial_distance_variance = l.LocData_RadDistVar_i_j;
     radial_velocity_variance = l.LocData_RadRelVelVar_i_j;
-    azimuth_angle_variance = l.LocData_VarEle_i_j;
-    elevation_angle_variance = l.LocData_VarAzi_i_j;
+    azimuth_angle_variance = l.LocData_VarAzi_i_j;
+    elevation_angle_variance = l.LocData_VarEle_i_j;
     radial_distance_velocity_covariance = l.LocData_DistVelCov_i_j;
     velocity_resolution_processing_probability = l.LocData_ProVelRes_i_j;
     azimuth_angle_probability = l.LocData_ProAziAng_i_j;
